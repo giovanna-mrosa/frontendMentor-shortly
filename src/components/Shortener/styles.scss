@@ -14,13 +14,15 @@
     border-radius: 12px;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     form {
       width: 100%;
       display: flex;
       gap: 25px;
+      
 
-      .inpt-short {
+     .inpt-short {
         width: 77%;
         height: 60px;
         border-radius: 8px;
@@ -39,6 +41,23 @@
           font-family: 'Poppins', sans-serif;
           color: var(--gray-100);
           font-size: 17px;
+        }
+      }
+
+      .error-field {
+        position: absolute;
+        bottom: 14px;
+        left: 50px;
+        color: #CB7171;
+        font-style: italic;
+        font-size: 14px;
+      }
+
+      .inpt-error {
+        outline: 2px solid #CB7171;
+
+        &::placeholder {
+          color: #c98383;
         }
       }
 
