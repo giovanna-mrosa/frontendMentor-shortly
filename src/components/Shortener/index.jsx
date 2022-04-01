@@ -73,10 +73,8 @@ export function Shortener() {
               Shorten It!
             </button>
           </form>
-        </div>
-        
-      </div>
-      
+        </div>        
+      </div>      
         <div>
         {shortLink && (
           <div className="response-box">
@@ -93,15 +91,15 @@ export function Shortener() {
             </div>
           </div>
         )}
-        {loader && linkError === ''
+        {loader 
+          && linkError === ''
           && (<Loader 
             type="spinner-default" 
             bgColor={"#3b3054"} 
             size={100} 
           />)
         }
-      </div>
-      
+      </div>      
     </div>
   )
 }
