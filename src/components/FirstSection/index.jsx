@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav } from "../Nav";
+import { NavMob } from "../NavMob";
 import girlDoodle from '../../assets/illustration-working.svg'
 
 import './styles.scss'
@@ -7,7 +8,12 @@ import './styles.scss'
 export function FirstSection() {
   return (
     <div className="container-1">
-      <Nav />
+      {window.screen.width > 768 ? (
+        <Nav />
+        ) : (
+        <NavMob />
+        )
+      }
       <div className="first-section-content">
         <div className="first-section-content-text">
           <h1>More than just shorter links</h1>

@@ -94,4 +94,28 @@
         }
       }
     }
+    @media (max-width: 768px) {
+      padding: 0 15px 200px 15px;
+
+      .text-adv {
+        align-items: center;
+
+      }
+
+      .detail-cards {
+        align-items: center;
+        justify-content: center;
+        padding-top: 130px;
+
+        .detail {
+          flex-direction: column;
+          width: 6px;
+          height: 700px;
+          background: var(--cyan-100);
+        }
+        .cards {
+          flex-direction: column;
+        }
+      }
+    }
 }

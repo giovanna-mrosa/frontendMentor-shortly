@@ -64,4 +64,15 @@
       }
     }
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .footer-content {
+      flex-wrap: wrap;
+
+      .links-footer {
+        flex-wrap: wrap;
+      }
+    }
+  }
 }
