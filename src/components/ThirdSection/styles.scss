@@ -41,4 +41,19 @@
       }
     }
   }
+  @media (max-width: 768px) {
+    .content-third-section {
+      background: url(../../assets/bg-boost-mobile.svg);
+      gap: 10px;
+      padding: 12px 30px;
+
+      h2 {
+        font-size: 29px;
+      }
+      .btn-start {
+        height: 55px;
+        width: 175px;
+      }
+    }
+  }
 }
