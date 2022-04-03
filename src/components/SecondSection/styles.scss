@@ -117,11 +117,19 @@
           flex-direction: column;
 
           .card-box {
+            align-items: center;
+            width: 100%;
+
+            h4 {
+              width: 100%;
+              text-align: left;
+            }
+
             .dot-icon {
               width: 70px;
               height: 70px;
               padding: 45px;
-              transform: translateY(-35px) translateX(118%);
+              transform: translateY(-40px);
             }
           }
         }
