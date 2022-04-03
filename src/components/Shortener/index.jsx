@@ -13,17 +13,17 @@ export function Shortener() {
   const [loader, setLoader] = useState(false)
   const [toggleCopied, setToggleCopied] = useState(false)
   const [copiedBg, setCopiedBg] = useState(false)
+  const [listLinks, setListLinks] = useState([])
 
 
   const validateLink = () => {
     if (validator.isEmpty(link)) {
-      console.log("validator", link)
       setLinkError('Please add a link') 
       setEmpty(true)     
     } else {
       setLinkError('')
       setEmpty(false)
-    }
+    }    
   }
 
   async function handleSubmit(event) {
@@ -32,10 +32,20 @@ export function Shortener() {
 
     const response = await api.post(`/shorten?url=${link}`)
 
-    setShortLink(response.data)
-    setLoader(false)
+    setShortLink(response.data.result.full_short_link)
 
-    // console.log(response)
+    saveListLinks(response.data.result.full_short_link)
+
+    setLoader(false)    
+  }
+
+  function saveListLinks(newShortLink) {
+    let linkBar = {}
+    linkBar = {
+      link: link,
+      shortLink: newShortLink
+    }
+    setListLinks([...listLinks, linkBar])
   }
 
   function copyText() {
@@ -49,7 +59,6 @@ export function Shortener() {
       setCopiedBg(false)
     }, 3000)
   }
-  console.log(shortLink)
 
   return (
     <div className="shortener-box">
@@ -76,11 +85,13 @@ export function Shortener() {
         </div>        
       </div>      
         <div>
-        {shortLink && (
-          <div className="response-box">
-            <p className="written-link">{link}</p>
+        {shortLink && listLinks.map(listLink => (
+          <div key={listLink.link} className="response-box">
+            {/* <p className="written-link">{link}</p> */}
+            <p className="written-link">{listLink.link}</p>
             <div className="result-box">
-              <p className="result">{shortLink.result?.full_short_link}</p>
+              {/* <p className="result">{shortLink.result?.full_short_link}</p> */}
+              <p className="result">{listLink?.shortLink}</p>
               <button
                 type="button"
                 className={ copiedBg === true ? "btn-copy copied-bg" : "btn-copy"}
@@ -90,7 +101,7 @@ export function Shortener() {
               </button>
             </div>
           </div>
-        )}
+        ))}
         {loader 
           && linkError === ''
           && (<Loader 
