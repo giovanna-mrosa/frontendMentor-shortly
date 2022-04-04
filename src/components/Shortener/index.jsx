@@ -14,6 +14,7 @@ export function Shortener() {
   const [toggleCopied, setToggleCopied] = useState(false)
   const [copiedBg, setCopiedBg] = useState(false)
   const [listLinks, setListLinks] = useState([])
+  const [paramLink, setParamlink] = useState('')
 
 
   const validateLink = () => {
@@ -48,8 +49,10 @@ export function Shortener() {
     setListLinks([...listLinks, linkBar])
   }
 
-  function copyText() {
-    navigator.clipboard.writeText(shortLink.result?.full_short_link)
+  function copyText(param) {
+    setParamlink(param)
+
+    navigator.clipboard.writeText(param)
 
     setToggleCopied(true)
     setCopiedBg(true)
@@ -87,17 +90,15 @@ export function Shortener() {
         <div>
         {shortLink && listLinks.map(listLink => (
           <div key={listLink.link} className="response-box">
-            {/* <p className="written-link">{link}</p> */}
             <p className="written-link">{listLink.link}</p>
             <div className="result-box">
-              {/* <p className="result">{shortLink.result?.full_short_link}</p> */}
               <p className="result">{listLink?.shortLink}</p>
               <button
                 type="button"
-                className={ copiedBg === true ? "btn-copy copied-bg" : "btn-copy"}
-                onClick={copyText}
+                className={ copiedBg === true && listLink?.shortLink === paramLink ? "btn-copy copied-bg" : "btn-copy"}
+                onClick={() => copyText(listLink?.shortLink)}
               >
-                {toggleCopied === true ? "Copied!" : "Copy"}
+                {toggleCopied === true && listLink?.shortLink === paramLink ? "Copied!" : "Copy"}
               </button>
             </div>
           </div>
